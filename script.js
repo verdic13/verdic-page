@@ -1,0 +1,364 @@
+const heroVideo = document.getElementById("heroVideo");
+const slider = document.getElementById("partnersSlider");
+const partnersBox = document.querySelector(".partners");
+const navbar = document.getElementById("navbar");
+const menuToggle = document.getElementById("menuToggle");
+const mobileMenu = document.getElementById("mobileMenu");
+const langButtons = document.querySelectorAll(".lang-button");
+
+const DEFAULT_LANG = "et";
+
+/* TÕLKED */
+const translations = {
+  et: {
+    meta: {
+      title: "Verdic"
+    },
+    nav: {
+      logoAria: "Verdic avaleht",
+      langSwitcher: "Keele valik",
+      toggle: "Ava menüü",
+      home: "Avaleht",
+      howWorks: "Kuidas see töötab",
+      howWeDo: "Kuidas me seda teeme",
+      contact: "Kontakt",
+      details: "Andmed"
+    },
+    partners: {
+      label: "Koostööpartnerid"
+    },
+    hero: {
+      eyebrow: "24/7 Andmete kogumine. Analüüs. Dokumentide koostamine.",
+      description: "Verdic kogub andmed API / X-tee kaudu, analüüsib AI-ga koostöös, koostab korrektsed dokumendid, edastab need autoriseeritud saajale. Planeerib tööülesandeid, kontrollib tähtaegasid.",
+      ctaDemo: "Küsi demo",
+      ctaHow: "Vaata kuidas töötab"
+    },
+    tech: {
+      label: "Kuidas see töötab",
+      title: "Tööülesannete täitmine 24/7",
+      collectTitle: "Andmete kogumine",
+      collectText: "Verdic loeb e-kirju, ühendub avalike ja riiklike registritega API / X-tee vahendusel ning kogub nõutud andmed automaatselt.",
+      analyzeTitle: "Analüüs",
+      analyzeText: "Kogutud andmed analüüsitakse vastavalt liigitusele AI otsuste konsensusel, seotakse konkreetse projektiga, luuakse korrektne ja sisuline andmete struktuur ning selle põhjal luuakse tööülesanne (dokument, e-kiri, automaatne arest jne.).",
+      documentsTitle: "Dokumendid",
+      documentsText: "Vajalikud dokumendid genereeritakse kliendi dokumendipõhjale automaatselt, tööülesanded inimestele määratakse vastavalt eelnevalt kokkulepitud reeglistikule ning tähtaegade kohaselt.",
+      deliveryTitle: "Edastamine",
+      deliveryText: "Dokumendid saadetakse automaatselt e-postiga või API vahendusel projekti osapooltele."
+    },
+    implementation: {
+      label: "Kuidas me seda teeme",
+      title: "Kaardistame Teie ettevõtte tööprotsessid ja automatiseerime need.",
+      item1: "Kaardistame Teie igapäevased tööülesanded ning protsessid Teie kontoris, tegeliku elu keskel.",
+      item2: "Kirjeldame töövoo etapid, struktureerime tegevused ja otsustuskohad ning selle põhjal loome vastava valdkonna tööprotsesside mudeli Verdic programmis.",
+      item3: "API- ja X-tee ühendustega seotud liitumised aitame teha, uuendused hoiame ajakohasena ning vastutame püsivalt ajakohaste ühenduste eest."
+    },
+    demo: {
+      label: "Demo",
+      title: "Näitame programmi ülesehitust, jagame kasutajate kogemust.",
+      text: "Jagame kasutajate kogemust efektiivsuse ja tulemlikkuse muutuste andmeid. Kui Teie äriprotsessis osaks on andmete kogumine, analüüs ja nende põhjal uute tööülesannete tekkimine ja täitmine, siis Verdic aitab Teid, päriselt."
+    },
+    contact: {
+      email: "Email:",
+      phone: "Telefon:",
+      whatsapp: "WhatsApp:",
+      location: "Asukoht:",
+      locationValue: "Tallinn, Eesti",
+      sendEmail: "Saada e-kiri",
+      openWhatsapp: "Ava WhatsApp"
+    },
+    footer: {
+      rights: "© 2026 Verdic. Kõik õigused kaitstud.",
+      promise: "Verdic lubadus: töötab 24/7, ei jää haigeks, ei käi teatris ega ämma sünnipäeval, kõik tähtajad on alati meeles."
+    }
+  },
+
+  en: {
+    meta: {
+      title: "Verdic"
+    },
+    nav: {
+      logoAria: "Verdic home",
+      langSwitcher: "Language switcher",
+      toggle: "Open menu",
+      home: "Home",
+      howWorks: "How it works",
+      howWeDo: "How we implement it",
+      contact: "Contact",
+      details: "Details"
+    },
+    partners: {
+      label: "Partners"
+    },
+    hero: {
+      eyebrow: "24/7 Data collection. Analysis. Document generation.",
+      description: "Verdic gathers data through API / X-Road, analyses it with AI assistance, prepares accurate documents, delivers them to the authorised recipient, plans tasks and tracks deadlines.",
+      ctaDemo: "Request a demo",
+      ctaHow: "See how it works"
+    },
+    tech: {
+      label: "How it works",
+      title: "Task execution 24/7",
+      collectTitle: "Data collection",
+      collectText: "Verdic reads emails, connects to public and state registries through API / X-Road and automatically gathers the required data.",
+      analyzeTitle: "Analysis",
+      analyzeText: "The collected data is analysed according to classification rules and AI decision consensus, linked to the relevant project, structured correctly and meaningfully, and used to create a task (document, email, automated seizure, etc.).",
+      documentsTitle: "Documents",
+      documentsText: "Required documents are generated automatically based on the client’s document template, and tasks are assigned to people according to previously agreed rules and deadlines.",
+      deliveryTitle: "Delivery",
+      deliveryText: "Documents are sent automatically by email or through API to the project parties."
+    },
+    implementation: {
+      label: "How we implement it",
+      title: "We map your company’s workflows and automate them.",
+      item1: "We map your daily tasks and processes directly in your office, in the context of real work.",
+      item2: "We describe workflow stages, structure activities and decision points, and based on that build the relevant process model in Verdic.",
+      item3: "We help establish API and X-Road integrations, keep updates current and take responsibility for continuously up-to-date connections."
+    },
+    demo: {
+      label: "Demo",
+      title: "We present the system architecture and share user experience.",
+      text: "We share user experience and measurable changes in efficiency and productivity. If your business process includes data collection, analysis and the creation and execution of new tasks based on that data, Verdic can help you in practice."
+    },
+    contact: {
+      email: "Email:",
+      phone: "Phone:",
+      whatsapp: "WhatsApp:",
+      location: "Location:",
+      locationValue: "Tallinn, Estonia",
+      sendEmail: "Send email",
+      openWhatsapp: "Open WhatsApp"
+    },
+    footer: {
+      rights: "© 2026 Verdic. All rights reserved.",
+      promise: "Verdic’s promise: works 24/7, never gets sick, never goes to the theatre or a mother-in-law’s birthday, and never forgets a deadline."
+    }
+  },
+
+  ru: {
+    meta: {
+      title: "Verdic"
+    },
+    nav: {
+      logoAria: "Главная Verdic",
+      langSwitcher: "Выбор языка",
+      toggle: "Открыть меню",
+      home: "Главная",
+      howWorks: "Как это работает",
+      howWeDo: "Как мы это делаем",
+      contact: "Контакт",
+      details: "Данные"
+    },
+    partners: {
+      label: "Партнёры"
+    },
+    hero: {
+      eyebrow: "24/7 Сбор данных. Анализ. Подготовка документов.",
+      description: "Verdic собирает данные через API / X-Road, анализирует их с участием AI, формирует корректные документы, отправляет их авторизованному получателю, планирует задачи и контролирует сроки.",
+      ctaDemo: "Запросить демо",
+      ctaHow: "Посмотреть как это работает"
+    },
+    tech: {
+      label: "Как это работает",
+      title: "Выполнение задач 24/7",
+      collectTitle: "Сбор данных",
+      collectText: "Verdic читает электронную почту, подключается к государственным и публичным реестрам через API / X-Road и автоматически собирает необходимые данные.",
+      analyzeTitle: "Анализ",
+      analyzeText: "Собранные данные анализируются по правилам классификации и консенсусу решений AI, привязываются к конкретному проекту, формируется корректная и содержательная структура данных, и на её основе создаётся задача (документ, письмо, автоматический арест и т. д.).",
+      documentsTitle: "Документы",
+      documentsText: "Необходимые документы формируются автоматически на основе шаблона клиента, а задачи назначаются сотрудникам в соответствии с заранее согласованными правилами и сроками.",
+      deliveryTitle: "Передача",
+      deliveryText: "Документы автоматически отправляются по электронной почте или через API участникам проекта."
+    },
+    implementation: {
+      label: "Как мы это делаем",
+      title: "Мы картируем рабочие процессы вашей компании и автоматизируем их.",
+      item1: "Мы картируем ваши ежедневные задачи и процессы непосредственно в вашем офисе, в реальной рабочей среде.",
+      item2: "Мы описываем этапы рабочего процесса, структурируем действия и точки принятия решений и на этой основе создаём модель процессов соответствующей сферы в системе Verdic.",
+      item3: "Мы помогаем настроить интеграции, связанные с API и X-Road, поддерживаем обновления в актуальном состоянии и отвечаем за постоянную актуальность подключений."
+    },
+    demo: {
+      label: "Демо",
+      title: "Показываем архитектуру программы и делимся опытом пользователей.",
+      text: "Мы делимся пользовательским опытом и изменениями в эффективности и результативности. Если в ваших бизнес-процессах присутствуют сбор данных, анализ и создание новых задач на их основе, Verdic действительно поможет вам."
+    },
+    contact: {
+      email: "Email:",
+      phone: "Телефон:",
+      whatsapp: "WhatsApp:",
+      location: "Местоположение:",
+      locationValue: "Таллинн, Эстония",
+      sendEmail: "Отправить письмо",
+      openWhatsapp: "Открыть WhatsApp"
+    },
+    footer: {
+      rights: "© 2026 Verdic. Все права защищены.",
+      promise: "Обещание Verdic: работает 24/7, не болеет, не ходит в театр и на день рождения тёщи и всегда помнит все сроки."
+    }
+  }
+};
+
+function getTranslationValue(obj, path) {
+  return path.split(".").reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : null), obj);
+}
+
+function applyTranslations(lang) {
+  const dictionary = translations[lang] || translations[DEFAULT_LANG];
+
+  document.documentElement.lang = lang;
+  document.title = dictionary.meta.title;
+
+  document.querySelectorAll("[data-i18n]").forEach((element) => {
+    const key = element.dataset.i18n;
+    const value = getTranslationValue(dictionary, key);
+
+    if (value === null) return;
+
+    const attr = element.dataset.i18nAttr;
+    if (attr) {
+      element.setAttribute(attr, value);
+    } else {
+      element.textContent = value;
+    }
+  });
+
+  langButtons.forEach((button) => {
+    button.classList.toggle("active", button.dataset.lang === lang);
+  });
+
+  localStorage.setItem("verdicLang", lang);
+}
+
+langButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    applyTranslations(button.dataset.lang);
+  });
+});
+
+const savedLang = localStorage.getItem("verdicLang");
+applyTranslations(translations[savedLang] ? savedLang : DEFAULT_LANG);
+
+/* HERO VIDEO */
+if (heroVideo) {
+  heroVideo.muted = true;
+  heroVideo.defaultMuted = true;
+  heroVideo.playsInline = true;
+
+  const tryPlay = () => {
+    heroVideo.play().catch((error) => {
+      console.log("Hero video autoplay failed:", error);
+    });
+  };
+
+  heroVideo.addEventListener("loadeddata", tryPlay);
+  heroVideo.addEventListener("canplay", tryPlay);
+  tryPlay();
+}
+
+/* PARTNERITE LÕPMATU RINGLUS */
+let offset = 0;
+let isPaused = false;
+let originals = [];
+let animationStarted = false;
+const speed = 0.1;
+
+function getSliderGap() {
+  if (!slider) return 18;
+  const styles = window.getComputedStyle(slider);
+  const gapValue = styles.columnGap || styles.gap || "18px";
+  const parsed = parseFloat(gapValue);
+  return Number.isFinite(parsed) ? parsed : 18;
+}
+
+function buildInfiniteSlider() {
+  if (!slider || !partnersBox) return;
+
+  if (originals.length === 0) {
+    originals = Array.from(slider.children).map((item) => item.cloneNode(true));
+  }
+
+  slider.innerHTML = "";
+
+  originals.forEach((item) => {
+    slider.appendChild(item.cloneNode(true));
+  });
+
+  while (slider.scrollWidth < partnersBox.clientWidth * 2.5) {
+    originals.forEach((item) => {
+      slider.appendChild(item.cloneNode(true));
+    });
+  }
+
+  offset = 0;
+  slider.style.transform = "translate3d(0, 0, 0)";
+}
+
+function stepSlider() {
+  requestAnimationFrame(stepSlider);
+
+  if (!slider || !partnersBox || originals.length === 0 || isPaused) return;
+
+  offset -= speed;
+  slider.style.transform = `translate3d(${offset}px, 0, 0)`;
+
+  const firstItem = slider.children[0];
+  if (!firstItem) return;
+
+  const firstWidth = firstItem.getBoundingClientRect().width + getSliderGap();
+
+  if (Math.abs(offset) >= firstWidth) {
+    offset += firstWidth;
+    slider.appendChild(firstItem);
+    slider.style.transform = `translate3d(${offset}px, 0, 0)`;
+  }
+}
+
+if (slider && partnersBox) {
+  buildInfiniteSlider();
+
+  partnersBox.addEventListener("mouseenter", () => {
+    isPaused = true;
+  });
+
+  partnersBox.addEventListener("mouseleave", () => {
+    isPaused = false;
+  });
+
+  if (!animationStarted) {
+    animationStarted = true;
+    stepSlider();
+  }
+
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      buildInfiniteSlider();
+    }, 150);
+  });
+}
+
+/* STICKY NAVBAR */
+window.addEventListener("scroll", () => {
+  if (!navbar) return;
+
+  if (window.scrollY > 30) {
+    navbar.classList.add("scrolled");
+  } else {
+    navbar.classList.remove("scrolled");
+  }
+});
+
+/* MOBILE MENU */
+if (menuToggle && mobileMenu) {
+  menuToggle.addEventListener("click", () => {
+    const isOpen = mobileMenu.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  mobileMenu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    });
+  });
+}

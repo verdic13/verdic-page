@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="et">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verdic</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero" id="avaleht">
+    <video
+      class="hero-video"
+      id="heroVideo"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+    >
+      <source src="videos/hero.mp4" type="video/mp4" />
+      Your browser does not support video.
+    </video>
+
+    <div class="hero-overlay-layer"></div>
+
+    <nav class="navbar" id="navbar">
+  <a
+    class="logo"
+    href="#avaleht"
+    aria-label="Verdic avaleht"
+    data-i18n="nav.logoAria"
+    data-i18n-attr="aria-label"
+  >
+    <img src="./logo/verdic-logo.svg" alt="Verdic" class="logo-image" />
+  </a>
+
+  <div class="nav-right">
+    <div
+      class="lang-switcher"
+      aria-label="Keele valik"
+      data-i18n="nav.langSwitcher"
+      data-i18n-attr="aria-label"
+    >
+      <button type="button" class="lang-button active" data-lang="et">ET</button>
+      <button type="button" class="lang-button" data-lang="en">EN</button>
+      <button type="button" class="lang-button" data-lang="ru">RU</button>
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <p class="eyebrow" data-i18n="hero.eyebrow">24/7 Andmete kogumine. Analüüs. Dokumentide koostamine.</p>
+
+        <p class="hero-description" data-i18n="hero.description">
+          Verdic kogub andmed API / X-tee kaudu, analüüsib AI-ga koostöös, koostab korrektsed dokumendid, edastab need autoriseeritud saajale. Planeerib tööülesandeid, kontrollib tähtaegasid.
+        </p>
+
+        <div class="hero-actions">
+          <a class="primary-button" href="#kontakt" data-i18n="hero.ctaDemo">Küsi demo</a>
+          <a class="secondary-button" href="#tehnoloogia" data-i18n="hero.ctaHow">Vaata kuidas töötab</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section
+    class="partners"
+    aria-label="Koostööpartnerid"
+    data-i18n="partners.label"
+    data-i18n-attr="aria-label"
+  >
+    <div class="partners-slider" id="partnersSlider">
+      <div class="partner-item">Digiministeerium</div>
+      <div class="partner-item">Kohtutäitur Marek Laanemets</div>
+      <div class="partner-item">Liiklusregister</div>
+      <div class="partner-item">Kohtutäitur Kaire Põlts</div>
+      <div class="partner-item">Ametlikud Teadaanded</div>
+      <div class="partner-item">Kohtutäitur Rannar Liitmaa</div>
+      <div class="partner-item">Pensioniamet</div>
+      <div class="partner-item">Kohtutäitur Aive</div>
+      <div class="partner-item">GO Workabit</div>
+    </div>
+  </section>
+
+  <main class="container">
+    <section class="section-card" id="tehnoloogia">
+      <p class="section-label" data-i18n="tech.label">Kuidas see töötab</p>
+      <h2 data-i18n="tech.title">Tööülesannete täitmine 24/7</h2>
+
+      <div class="feature-grid">
+        <article class="feature-box">
+          <h3 data-i18n="tech.collectTitle">Andmete kogumine</h3>
+          <p data-i18n="tech.collectText">
+            Verdic loeb e-kirju, ühendub avalike ja riiklike registritega API / X-tee vahendusel ning kogub nõutud andmed automaatselt.
+          </p>
+        </article>
+
+        <article class="feature-box">
+          <h3 data-i18n="tech.analyzeTitle">Analüüs</h3>
+          <p data-i18n="tech.analyzeText">
+            Kogutud andmed analüüsitakse vastavad liigitusele AI otsuste konsensusel, seotakse konkreetse projektiga, luuakse korrektne ja sisuline andmete struktuur ning selle põhjal luuakse tööülesanne (dokument, e-kiri, automatne arest jne.).
+          </p>
+        </article>
+
+        <article class="feature-box">
+          <h3 data-i18n="tech.documentsTitle">Dokumendid</h3>
+          <p data-i18n="tech.documentsText">
+            Vajalikud dokumendid genereeritakse kliendi dokumendipõhjale automaatselt, tööülesanded inimestele määratakse vastavalt eelnevalt kokkulepitud reeglistikule ning tähtaegade kohaselt.
+          </p>
+        </article>
+
+        <article class="feature-box">
+          <h3 data-i18n="tech.deliveryTitle">Edastamine</h3>
+          <p data-i18n="tech.deliveryText">
+            Dokumendid saadetakse automaatselt e-postiga või API vahendusel projekti osapooltele.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-card" id="teostus">
+      <p class="section-label" data-i18n="implementation.label">Kuidas me seda teeme</p>
+      <h2 data-i18n="implementation.title">Kaardistame Teie ettevõtte tööprotsessid ja automatiseerime need.</h2>
+
+      <ul class="process-list">
+        <li data-i18n="implementation.item1">Kaardistame Teie igapäevased tööülesanded ning protsessid Teie kontoris, tegeliku elu keskel.</li>
+        <li data-i18n="implementation.item2">Kirjeldame töövoo etapid, struktuureerime tegevused ja otsustuskohad ning selle põhjal loome vastava valdkonna tööprotsesside mudeli Verdic programmis.</li>
+        <li data-i18n="implementation.item3">API- ja X-tee ühendustega seotud liitumised aitame teha, uuendused hoiame ajakohasena ning vastutame püsiva ajakohaste ühenduste eest.</li>
+      </ul>
+    </section>
+
+    <section class="section-card contact-card" id="kontakt">
+      <div class="contact-text">
+        <p class="section-label" data-i18n="demo.label">Demo</p>
+
+        <h2 data-i18n="demo.title">Näitame programmi ülesehitust, jagame kasutajate kogemust.</h2>
+
+        <p class="muted-text" data-i18n="demo.text">
+          Jagame kasutajate kogemust efektiivsuse ja tulemlikkuse muutuste andmeid. Kui Teie äriprotsessis osaks on andmete kogumine, analüüs ja nende põhjal uute tööülesannete tekkimine ja täitmine, siis Verdic aitab Teid, päriselt.
+        </p>
+      </div>
+
+      <div class="contact-panel">
+        <p>
+          <strong data-i18n="contact.email">Email:</strong>
+          <a href="mailto:info@verdic.ee">info@verdic.ee</a>
+        </p>
+        <p>
+          <strong data-i18n="contact.phone">Telefon:</strong>
+          <a href="tel:+3725104661">+372 510 4661</a>
+        </p>
+        <p>
+          <strong data-i18n="contact.whatsapp">WhatsApp:</strong>
+          <a href="https://wa.me/3725104661" target="_blank" rel="noopener noreferrer">+372 510 4661</a>
+        </p>
+        <p>
+          <strong data-i18n="contact.location">Asukoht:</strong>
+          <span data-i18n="contact.locationValue">Tallinn, Eesti</span>
+        </p>
+
+        <div class="contact-actions">
+          <a class="primary-button full-width" href="mailto:info@verdic.ee" data-i18n="contact.sendEmail">Saada e-kiri</a>
+          <a class="secondary-button full-width" href="https://wa.me/3725104661" target="_blank" rel="noopener noreferrer" data-i18n="contact.openWhatsapp">Ava WhatsApp</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="footer">
+    <div class="footer-inner">
+      <p data-i18n="footer.rights">© 2026 Verdic. Kõik õigused kaitstud.</p>
+      <p data-i18n="footer.promise">Verdic lubadus: töötab 24/7, ei jää haigeks, ei käi teatris ega ämma sünnipäeval, kõik tähtajad on alati meeles.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
