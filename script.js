@@ -259,7 +259,7 @@ let offset = 0;
 let isPaused = false;
 let originals = [];
 let animationStarted = false;
-const speed = 0.1;
+const speed = 0.3;
 
 function getSliderGap() {
   if (!slider) return 18;
