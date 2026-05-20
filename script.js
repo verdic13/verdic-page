@@ -25,8 +25,9 @@ const translations = {
       details: "Andmed"
     },
     partners: {
-      label: "Koostööpartnerid"
-    },
+  label: "Tehniline ühendatus",
+  title: "Tehniline ühendatus"
+},
     hero: {
       eyebrow: "24/7 Andmete kogumine. Analüüs. Dokumentide koostamine.",
       description: "Verdic kogub andmed API / X-tee kaudu, analüüsib AI-ga koostöös, koostab korrektsed dokumendid, edastab need autoriseeritud saajale. Planeerib tööülesandeid, kontrollib tähtaegasid.",
@@ -87,8 +88,9 @@ const translations = {
       details: "Details"
     },
     partners: {
-      label: "Partners"
-    },
+  label: "Technical integrations",
+  title: "Technical integrations"
+},
     hero: {
       eyebrow: "24/7 Data collection. Analysis. Document generation.",
       description: "Verdic gathers data through API / X-Road, analyses it with AI assistance, prepares accurate documents, delivers them to the authorised recipient, plans tasks and tracks deadlines.",
@@ -149,8 +151,9 @@ const translations = {
       details: "Данные"
     },
     partners: {
-      label: "Партнёры"
-    },
+  label: "Техническая интеграция",
+  title: "Техническая интеграция"
+},
     hero: {
       eyebrow: "24/7 Сбор данных. Анализ. Подготовка документов.",
       description: "Verdic собирает данные через API / X-Road, анализирует их с участием AI, формирует корректные документы, отправляет их авторизованному получателю, планирует задачи и контролирует сроки.",
