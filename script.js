@@ -25,9 +25,20 @@ const translations = {
       details: "Andmed"
     },
     partners: {
-  label: "Tehniline ühendatus",
-  title: "Tehniline ühendatus"
-},
+      label: "Tehniline ühendatus",
+      title: "Tehniline ühendatus",
+      items: [
+        "Justiits- ja Digiministeerium",
+        "Kohtutäitur Marek Laanemets",
+        "Transpordiamet",
+        "Kinnisturegister",
+        "Ametlikud Teadaanded",
+        "E-Äriregister",
+        "Rahvastikuregister",
+        "Maksu- ja Tolliamet",
+        "Töötukassa"
+      ]
+    },
     hero: {
       eyebrow: "24/7 Andmete kogumine. Analüüs. Dokumentide koostamine.",
       description: "Verdic kogub andmed API / X-tee kaudu, analüüsib AI-ga koostöös, koostab korrektsed dokumendid, edastab need autoriseeritud saajale. Planeerib tööülesandeid, kontrollib tähtaegasid.",
@@ -88,9 +99,20 @@ const translations = {
       details: "Details"
     },
     partners: {
-  label: "Technical integrations",
-  title: "Technical integrations"
-},
+      label: "Technical integrations",
+      title: "Technical integrations",
+      items: [
+        "Ministry of Justice and Digital Affairs",
+        "Enforcement Agent Marek Laanemets",
+        "Estonian Transport Administration",
+        "E-Land Register",
+        "Official Announcements",
+        "e-Business Register",
+        "Population Register",
+        "Estonian Tax and Customs Board",
+        "Estonian Unemployment Insurance Fund"
+      ]
+    },
     hero: {
       eyebrow: "24/7 Data collection. Analysis. Document generation.",
       description: "Verdic gathers data through API / X-Road, analyses it with AI assistance, prepares accurate documents, delivers them to the authorised recipient, plans tasks and tracks deadlines.",
@@ -151,9 +173,20 @@ const translations = {
       details: "Данные"
     },
     partners: {
-  label: "Техническая интеграция",
-  title: "Техническая интеграция"
-},
+      label: "Техническая интеграция",
+      title: "Техническая интеграция",
+      items: [
+        "Министерство юстиции и цифровых технологий",
+        "Судебный исполнитель Марек Лаанеметс",
+        "Транспортный департамент Эстонии",
+        "Земельный реестр",
+        "Официальные объявления",
+        "Электронный бизнес-регистр",
+        "Регистр народонаселения",
+        "Налогово-таможенный департамент",
+        "Касса по безработице"
+      ]
+    },
     hero: {
       eyebrow: "24/7 Сбор данных. Анализ. Подготовка документов.",
       description: "Verdic собирает данные через API / X-Road, анализирует их с участием AI, формирует корректные документы, отправляет их авторизованному получателю, планирует задачи и контролирует сроки.",
@@ -202,59 +235,6 @@ const translations = {
 
 function getTranslationValue(obj, path) {
   return path.split(".").reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : null), obj);
-}
-
-function applyTranslations(lang) {
-  const dictionary = translations[lang] || translations[DEFAULT_LANG];
-
-  document.documentElement.lang = lang;
-  document.title = dictionary.meta.title;
-
-  document.querySelectorAll("[data-i18n]").forEach((element) => {
-    const key = element.dataset.i18n;
-    const value = getTranslationValue(dictionary, key);
-
-    if (value === null) return;
-
-    const attr = element.dataset.i18nAttr;
-    if (attr) {
-      element.setAttribute(attr, value);
-    } else {
-      element.textContent = value;
-    }
-  });
-
-  langButtons.forEach((button) => {
-    button.classList.toggle("active", button.dataset.lang === lang);
-  });
-
-  localStorage.setItem("verdicLang", lang);
-}
-
-langButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    applyTranslations(button.dataset.lang);
-  });
-});
-
-const savedLang = localStorage.getItem("verdicLang");
-applyTranslations(translations[savedLang] ? savedLang : DEFAULT_LANG);
-
-/* HERO VIDEO */
-if (heroVideo) {
-  heroVideo.muted = true;
-  heroVideo.defaultMuted = true;
-  heroVideo.playsInline = true;
-
-  const tryPlay = () => {
-    heroVideo.play().catch((error) => {
-      console.log("Hero video autoplay failed:", error);
-    });
-  };
-
-  heroVideo.addEventListener("loadeddata", tryPlay);
-  heroVideo.addEventListener("canplay", tryPlay);
-  tryPlay();
 }
 
 /* PARTNERITE LÕPMATU RINGLUS + TOUCH / DRAG */
@@ -350,10 +330,7 @@ function startMomentum() {
 
 function buildInfiniteSlider() {
   if (!slider || !partnersBox) return;
-
-  if (originals.length === 0) {
-    originals = Array.from(slider.children).map((item) => item.cloneNode(true));
-  }
+  if (originals.length === 0) return;
 
   slider.innerHTML = "";
 
@@ -371,6 +348,27 @@ function buildInfiniteSlider() {
   renderSlider();
 }
 
+function renderPartnerItems(lang) {
+  if (!slider) return;
+
+  const items =
+    translations[lang]?.partners?.items ||
+    translations[DEFAULT_LANG].partners.items ||
+    [];
+
+  slider.innerHTML = "";
+
+  items.forEach((name) => {
+    const item = document.createElement("div");
+    item.className = "partner-item";
+    item.textContent = name;
+    slider.appendChild(item);
+  });
+
+  originals = Array.from(slider.children).map((item) => item.cloneNode(true));
+  buildInfiniteSlider();
+}
+
 function stepSlider() {
   requestAnimationFrame(stepSlider);
 
@@ -381,18 +379,69 @@ function stepSlider() {
   renderSlider();
 }
 
+function applyTranslations(lang) {
+  const dictionary = translations[lang] || translations[DEFAULT_LANG];
+
+  document.documentElement.lang = lang;
+  document.title = dictionary.meta.title;
+
+  document.querySelectorAll("[data-i18n]").forEach((element) => {
+    const key = element.dataset.i18n;
+    const value = getTranslationValue(dictionary, key);
+
+    if (value === null) return;
+
+    const attr = element.dataset.i18nAttr;
+    if (attr) {
+      element.setAttribute(attr, value);
+    } else {
+      element.textContent = value;
+    }
+  });
+
+  renderPartnerItems(lang);
+
+  langButtons.forEach((button) => {
+    button.classList.toggle("active", button.dataset.lang === lang);
+  });
+
+  localStorage.setItem("verdicLang", lang);
+}
+
+langButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    applyTranslations(button.dataset.lang);
+  });
+});
+
+/* HERO VIDEO */
+if (heroVideo) {
+  heroVideo.muted = true;
+  heroVideo.defaultMuted = true;
+  heroVideo.playsInline = true;
+
+  const tryPlay = () => {
+    heroVideo.play().catch((error) => {
+      console.log("Hero video autoplay failed:", error);
+    });
+  };
+
+  heroVideo.addEventListener("loadeddata", tryPlay);
+  heroVideo.addEventListener("canplay", tryPlay);
+  tryPlay();
+}
+
+/* SLIDER START */
 if (slider && partnersBox) {
-  buildInfiniteSlider();
-
-  partnersBox.addEventListener("mouseenter", () => {
-    isHoverPaused = true;
-  });
-
-  partnersBox.addEventListener("mouseleave", () => {
-    isHoverPaused = false;
-  });
-
   if (dragZone) {
+    partnersBox.addEventListener("mouseenter", () => {
+      isHoverPaused = true;
+    });
+
+    partnersBox.addEventListener("mouseleave", () => {
+      isHoverPaused = false;
+    });
+
     dragZone.addEventListener("pointerdown", (e) => {
       if (e.pointerType === "mouse" && e.button !== 0) return;
 
@@ -448,10 +497,15 @@ if (slider && partnersBox) {
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-      buildInfiniteSlider();
+      const currentLang = localStorage.getItem("verdicLang") || DEFAULT_LANG;
+      renderPartnerItems(currentLang);
     }, 150);
   });
 }
+
+/* INITIAL LANGUAGE */
+const savedLang = localStorage.getItem("verdicLang");
+applyTranslations(translations[savedLang] ? savedLang : DEFAULT_LANG);
 
 /* STICKY NAVBAR */
 window.addEventListener("scroll", () => {
