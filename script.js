@@ -257,12 +257,25 @@ if (heroVideo) {
   tryPlay();
 }
 
-/* PARTNERITE LÕPMATU RINGLUS */
+/* PARTNERITE LÕPMATU RINGLUS + TOUCH / DRAG */
+const dragZone = document.querySelector(".partners-track-wrap");
+
 let offset = 0;
-let isPaused = false;
 let originals = [];
 let animationStarted = false;
-const speed = 0.3;
+const speed = 0.45;
+
+let isHoverPaused = false;
+let isDragPaused = false;
+let isDragging = false;
+let lastX = 0;
+let lastMoveTime = 0;
+let velocity = 0;
+let momentumFrame = null;
+
+function isSliderPaused() {
+  return isHoverPaused || isDragPaused;
+}
 
 function getSliderGap() {
   if (!slider) return 18;
@@ -270,6 +283,69 @@ function getSliderGap() {
   const gapValue = styles.columnGap || styles.gap || "18px";
   const parsed = parseFloat(gapValue);
   return Number.isFinite(parsed) ? parsed : 18;
+}
+
+function getItemFullWidth(item) {
+  return item.getBoundingClientRect().width + getSliderGap();
+}
+
+function renderSlider() {
+  if (!slider) return;
+  slider.style.transform = `translate3d(${offset}px, 0, 0)`;
+}
+
+function normalizeSlider() {
+  if (!slider || slider.children.length === 0) return;
+
+  while (slider.children.length > 0) {
+    const firstItem = slider.children[0];
+    const firstWidth = getItemFullWidth(firstItem);
+
+    if (offset <= -firstWidth) {
+      offset += firstWidth;
+      slider.appendChild(firstItem);
+    } else {
+      break;
+    }
+  }
+
+  while (slider.children.length > 0 && offset > 0) {
+    const lastItem = slider.children[slider.children.length - 1];
+    const lastWidth = getItemFullWidth(lastItem);
+
+    slider.insertBefore(lastItem, slider.firstChild);
+    offset -= lastWidth;
+  }
+}
+
+function stopMomentum() {
+  if (momentumFrame) {
+    cancelAnimationFrame(momentumFrame);
+    momentumFrame = null;
+  }
+}
+
+function startMomentum() {
+  stopMomentum();
+
+  const momentumStep = () => {
+    if (Math.abs(velocity) < 0.01) {
+      velocity = 0;
+      isDragPaused = false;
+      momentumFrame = null;
+      return;
+    }
+
+    offset += velocity * 16;
+    velocity *= 0.95;
+
+    normalizeSlider();
+    renderSlider();
+
+    momentumFrame = requestAnimationFrame(momentumStep);
+  };
+
+  momentumFrame = requestAnimationFrame(momentumStep);
 }
 
 function buildInfiniteSlider() {
@@ -292,39 +368,76 @@ function buildInfiniteSlider() {
   }
 
   offset = 0;
-  slider.style.transform = "translate3d(0, 0, 0)";
+  renderSlider();
 }
 
 function stepSlider() {
   requestAnimationFrame(stepSlider);
 
-  if (!slider || !partnersBox || originals.length === 0 || isPaused) return;
+  if (!slider || !partnersBox || originals.length === 0 || isSliderPaused()) return;
 
   offset -= speed;
-  slider.style.transform = `translate3d(${offset}px, 0, 0)`;
-
-  const firstItem = slider.children[0];
-  if (!firstItem) return;
-
-  const firstWidth = firstItem.getBoundingClientRect().width + getSliderGap();
-
-  if (Math.abs(offset) >= firstWidth) {
-    offset += firstWidth;
-    slider.appendChild(firstItem);
-    slider.style.transform = `translate3d(${offset}px, 0, 0)`;
-  }
+  normalizeSlider();
+  renderSlider();
 }
 
 if (slider && partnersBox) {
   buildInfiniteSlider();
 
   partnersBox.addEventListener("mouseenter", () => {
-    isPaused = true;
+    isHoverPaused = true;
   });
 
   partnersBox.addEventListener("mouseleave", () => {
-    isPaused = false;
+    isHoverPaused = false;
   });
+
+  if (dragZone) {
+    dragZone.addEventListener("pointerdown", (e) => {
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+
+      isDragging = true;
+      isDragPaused = true;
+      velocity = 0;
+      stopMomentum();
+
+      lastX = e.clientX;
+      lastMoveTime = performance.now();
+
+      dragZone.classList.add("dragging");
+      dragZone.setPointerCapture?.(e.pointerId);
+    });
+
+    dragZone.addEventListener("pointermove", (e) => {
+      if (!isDragging) return;
+
+      const now = performance.now();
+      const dx = e.clientX - lastX;
+      const dt = Math.max(now - lastMoveTime, 1);
+
+      velocity = dx / dt;
+      offset += dx;
+
+      lastX = e.clientX;
+      lastMoveTime = now;
+
+      normalizeSlider();
+      renderSlider();
+    });
+
+    const endDrag = (e) => {
+      if (!isDragging) return;
+
+      isDragging = false;
+      dragZone.classList.remove("dragging");
+      dragZone.releasePointerCapture?.(e.pointerId);
+
+      startMomentum();
+    };
+
+    dragZone.addEventListener("pointerup", endDrag);
+    dragZone.addEventListener("pointercancel", endDrag);
+  }
 
   if (!animationStarted) {
     animationStarted = true;
