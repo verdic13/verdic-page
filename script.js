@@ -94,9 +94,9 @@ const translations = {
       toggle: "Open menu",
       home: "Home",
       howWorks: "How it works",
-      howWeDo: "How we implement it",
+      howWeDo: "How we do it",
       contact: "Contact",
-      details: "Details"
+      details: "Data"
     },
     partners: {
       label: "Technical integrations",
@@ -114,8 +114,8 @@ const translations = {
       ]
     },
     hero: {
-      eyebrow: "24/7 Data collection. Analysis. Document generation.",
-      description: "Verdic gathers data through API / X-Road, analyses it with AI assistance, prepares accurate documents, delivers them to the authorised recipient, plans tasks and tracks deadlines.",
+      eyebrow: "An automated work platform for enforcement agents, notaries, bankruptcy trustees, collection agencies, legal institutions and financial institutions.",
+      description: "Verdic gathers data through API / X-Road, analyses it in cooperation with AI, prepares accurate documents and automatically completes recurring procedural actions. It plans tasks and monitors deadlines.",
       ctaDemo: "Request a demo",
       ctaHow: "See how it works"
     },
@@ -123,25 +123,25 @@ const translations = {
       label: "How it works",
       title: "Task execution 24/7",
       collectTitle: "Data collection",
-      collectText: "Verdic reads emails, connects to public and state registries through API / X-Road and automatically gathers the required data.",
+      collectText: "Verdic reads and analyses emails and various document formats (xls, csv, pdf, docx, xml, etc.), connects to public and state registries through API / X-Road, and automatically gathers the required data.",
       analyzeTitle: "Analysis",
       analyzeText: "The collected data is analysed according to classification rules and AI decision consensus, linked to the relevant project, structured correctly and meaningfully, and used to create a task (document, email, automated seizure, etc.).",
       documentsTitle: "Documents",
       documentsText: "Required documents are generated automatically based on the client’s document template, and tasks are assigned to people according to previously agreed rules and deadlines.",
       deliveryTitle: "Delivery",
-      deliveryText: "Documents are sent automatically by email or through API to the project parties."
+      deliveryText: "The task is carried out automatically when X-Road/API access exists (for example: preliminary seizure, seizure, prohibition on disposal, etc.) or is sent by the system as a document by email to the project parties."
     },
     implementation: {
-      label: "How we implement it",
-      title: "We map your company’s workflows and automate them.",
+      label: "How we do it",
+      title: "We map your company’s work processes and automate them.",
       item1: "We map your daily tasks and processes directly in your office, in the context of real work.",
-      item2: "We describe workflow stages, structure activities and decision points, and based on that build the relevant process model in Verdic.",
+      item2: "We describe the workflow stages, structure the activities and decision points, and use that to create the work process model for the relevant field in Verdic.",
       item3: "We help establish API and X-Road integrations, keep updates current and take responsibility for continuously up-to-date connections."
     },
     demo: {
       label: "Demo",
-      title: "We present the system architecture and share user experience.",
-      text: "We share user experience and measurable changes in efficiency and productivity. If your business process includes data collection, analysis and the creation and execution of new tasks based on that data, Verdic can help you in practice."
+      title: "We show the program structure and share user experience.",
+      text: "We share user experience and data on changes in efficiency and effectiveness. If your business process includes data collection, analysis, and the creation and execution of new tasks based on that data, Verdic can genuinely help you."
     },
     contact: {
       email: "Email:",
@@ -188,8 +188,8 @@ const translations = {
       ]
     },
     hero: {
-      eyebrow: "24/7 Сбор данных. Анализ. Подготовка документов.",
-      description: "Verdic собирает данные через API / X-Road, анализирует их с участием AI, формирует корректные документы, отправляет их авторизованному получателю, планирует задачи и контролирует сроки.",
+      eyebrow: "Автоматизированная рабочая платформа для судебных исполнителей, нотариусов, банкротных управляющих, коллекторских компаний, юридических и финансовых организаций.",
+      description: "Verdic собирает данные через API / X-Road, анализирует их во взаимодействии с AI, формирует корректные документы и автоматически завершает повторяющиеся процессуальные действия. Он планирует задачи и контролирует сроки.",
       ctaDemo: "Запросить демо",
       ctaHow: "Посмотреть как это работает"
     },
@@ -197,25 +197,25 @@ const translations = {
       label: "Как это работает",
       title: "Выполнение задач 24/7",
       collectTitle: "Сбор данных",
-      collectText: "Verdic читает электронную почту, подключается к государственным и публичным реестрам через API / X-Road и автоматически собирает необходимые данные.",
+      collectText: "Verdic читает и анализирует электронные письма и различные форматы документов (xls, csv, pdf, docx, xml и т. д.), подключается к публичным и государственным реестрам через API / X-Road и автоматически собирает необходимые данные.",
       analyzeTitle: "Анализ",
       analyzeText: "Собранные данные анализируются по правилам классификации и консенсусу решений AI, привязываются к конкретному проекту, формируется корректная и содержательная структура данных, и на её основе создаётся задача (документ, письмо, автоматический арест и т. д.).",
       documentsTitle: "Документы",
       documentsText: "Необходимые документы формируются автоматически на основе шаблона клиента, а задачи назначаются сотрудникам в соответствии с заранее согласованными правилами и сроками.",
       deliveryTitle: "Передача",
-      deliveryText: "Документы автоматически отправляются по электронной почте или через API участникам проекта."
+      deliveryText: "Задача выполняется автоматически при наличии доступа X-Road/API (например: предварительный арест, арест, запрет на распоряжение и т. д.) или отправляется системой участникам проекта по электронной почте в виде документа."
     },
     implementation: {
       label: "Как мы это делаем",
-      title: "Мы картируем рабочие процессы вашей компании и автоматизируем их.",
-      item1: "Мы картируем ваши ежедневные задачи и процессы непосредственно в вашем офисе, в реальной рабочей среде.",
-      item2: "Мы описываем этапы рабочего процесса, структурируем действия и точки принятия решений и на этой основе создаём модель процессов соответствующей сферы в системе Verdic.",
-      item3: "Мы помогаем настроить интеграции, связанные с API и X-Road, поддерживаем обновления в актуальном состоянии и отвечаем за постоянную актуальность подключений."
+      title: "Мы описываем рабочие процессы вашей компании и автоматизируем их.",
+      item1: "Мы описываем ваши ежедневные задачи и процессы непосредственно в вашем офисе, в условиях реальной работы.",
+      item2: "Мы описываем этапы рабочего процесса, структурируем действия и точки принятия решений и на этой основе создаём в Verdic модель рабочих процессов соответствующей сферы.",
+      item3: "Мы помогаем выполнить подключения, связанные с API и X-Road, поддерживаем обновления в актуальном состоянии и отвечаем за постоянную актуальность подключений."
     },
     demo: {
       label: "Демо",
-      title: "Показываем архитектуру программы и делимся опытом пользователей.",
-      text: "Мы делимся пользовательским опытом и изменениями в эффективности и результативности. Если в ваших бизнес-процессах присутствуют сбор данных, анализ и создание новых задач на их основе, Verdic действительно поможет вам."
+      title: "Показываем структуру программы и делимся опытом пользователей.",
+      text: "Мы делимся опытом пользователей и данными об изменениях в эффективности и результативности. Если ваш бизнес-процесс включает сбор данных, анализ, а также создание и выполнение новых задач на их основе, Verdic действительно поможет вам."
     },
     contact: {
       email: "Email:",
