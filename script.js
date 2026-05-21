@@ -40,8 +40,8 @@ const translations = {
       ]
     },
     hero: {
-      eyebrow: "24/7 Andmete kogumine. Analüüs. Dokumentide koostamine.",
-      description: "Verdic kogub andmed API / X-tee kaudu, analüüsib AI-ga koostöös, koostab korrektsed dokumendid, edastab need autoriseeritud saajale. Planeerib tööülesandeid, kontrollib tähtaegasid.",
+      eyebrow: "Automatiseeritud tööplatvorm kohtutäituritele, notaritele, pankrotihalduritele, inkassofirmadele, õigus- ja finantsasutustele.",
+      description: "Verdic kogub andmed API / X-tee kaudu, analüüsib AI-ga koostöös, koostab korrektsed dokumendid, viib korduvad menetlustoimingud automaatselt lõpuni. Planeerib tööülesanded, kontrollib tähtaegu.",
       ctaDemo: "Küsi demo",
       ctaHow: "Vaata kuidas töötab"
     },
@@ -49,13 +49,13 @@ const translations = {
       label: "Kuidas see töötab",
       title: "Tööülesannete täitmine 24/7",
       collectTitle: "Andmete kogumine",
-      collectText: "Verdic loeb e-kirju, ühendub avalike ja riiklike registritega API / X-tee vahendusel ning kogub nõutud andmed automaatselt.",
+      collectText: "Verdic loeb ja analüüsib e-kirju, erinevaid dokumendiformaate (xls, csv, pdf, docx, xml, jne.) ühendub avalike ja riiklike registritega API / X-tee vahendusel ning kogub nõutud andmed automaatselt.",
       analyzeTitle: "Analüüs",
       analyzeText: "Kogutud andmed analüüsitakse vastavalt liigitusele AI otsuste konsensusel, seotakse konkreetse projektiga, luuakse korrektne ja sisuline andmete struktuur ning selle põhjal luuakse tööülesanne (dokument, e-kiri, automaatne arest jne.).",
       documentsTitle: "Dokumendid",
       documentsText: "Vajalikud dokumendid genereeritakse kliendi dokumendipõhjale automaatselt, tööülesanded inimestele määratakse vastavalt eelnevalt kokkulepitud reeglistikule ning tähtaegade kohaselt.",
       deliveryTitle: "Edastamine",
-      deliveryText: "Dokumendid saadetakse automaatselt e-postiga või API vahendusel projekti osapooltele."
+      deliveryText: "Tööülesanne teostatakse automaatselt X-tee/API olemasolul (näit: eelarest, arest, käsutuskeeld,...) või saadetakse süsteemi poolt dokumendi vormis e-postiga projekti osapooltele."
     },
     implementation: {
       label: "Kuidas me seda teeme",
@@ -67,7 +67,7 @@ const translations = {
     demo: {
       label: "Demo",
       title: "Näitame programmi ülesehitust, jagame kasutajate kogemust.",
-      text: "Jagame kasutajate kogemust efektiivsuse ja tulemlikkuse muutuste andmeid. Kui Teie äriprotsessis osaks on andmete kogumine, analüüs ja nende põhjal uute tööülesannete tekkimine ja täitmine, siis Verdic aitab Teid, päriselt."
+      text: "Jagame kasutajate kogemust efektiivsuse ja tulemlikkuse muutuste andmeid. Kui Teie äriprotsessi osaks on andmete kogumine, analüüs ja nende põhjal uute tööülesannete tekkimine ja täitmine, siis Verdic aitab Teid, päriselt."
     },
     contact: {
       email: "Email:",
